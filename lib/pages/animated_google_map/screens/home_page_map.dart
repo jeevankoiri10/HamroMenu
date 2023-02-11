@@ -7,6 +7,7 @@ import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:flutter_rating_stars/flutter_rating_stars.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:hamro_menu_getx/secret/secret_key.dart';
 import '../models/auto_complete_result.dart';
 import '../providers/search_places.dart';
 import '../services/map_services.dart';
@@ -59,7 +60,7 @@ class _HomePageState extends ConsumerState<HomePageMap> {
   bool isPhotos = false;
   bool isMenu = true;
 
-  final key = 'AIzaSyAfixTbiUl5P2-Rhb2NXGQPL6I1sky1KL4';
+  final key = API_KEY;
 
   var selectedPlaceDetails;
 
@@ -516,6 +517,7 @@ class _HomePageState extends ConsumerState<HomePageMap> {
 
                                             List<dynamic> placesWithin =
                                                 placesResult['results'] as List;
+                                            print(placesWithin);
 
                                             allFavoritePlaces
                                                 .addAll(placesWithin);

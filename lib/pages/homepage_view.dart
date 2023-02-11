@@ -44,6 +44,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     setState(() {});
+    List<int> ListOfItems = [1, 2];
 
     // Instantiate your class using Get.put() to make it available for all "child" routes there.
     final controller = Get.put(MapController());
@@ -52,207 +53,221 @@ class _HomePageState extends State<HomePage> {
       child: Obx(() {
         return new Scaffold(
           body: SafeArea(
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  // New Google map Testing place
+            child: Stack(
+              children: [
+                Container(
+                  child: Column(
+                    //mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      // New Google map Testing place
 
-                  //For placing location information
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(left: 15, right: 5, bottom: 0),
-                    child: TextButton(
-                      child: Row(
-                        children: [
-                          Row(
+                      //For placing location information
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            left: 15, right: 5, bottom: 0),
+                        child: TextButton(
+                          child: Row(
                             children: [
-                              IconButton(
-                                  onPressed: () {
-                                    Navigator.of(context).push(
-                                        MaterialPageRoute(
-                                            builder: (context) => ProviderScope(
-                                                child: HomePageMap())));
-                                  },
-                                  icon: Icon(Icons.dashboard)),
-                              Icon(Icons.location_on),
-                              SizedBox(
-                                width: 300,
-                                child: Text(
-                                  //{controller.Address}.toString()
-                                  (controller.Address.toString() == '')
-                                      ? 'Set Location'
-                                      : controller.Address.toString(),
-                                  overflow: TextOverflow.ellipsis,
-                                  maxLines: 1,
-                                  softWrap: false,
-                                  style: TextStyle(
-                                    fontSize: 13.0,
-                                    fontFamily: 'Rubik',
-                                    color: new Color(0xFF212121),
-                                    fontWeight: FontWeight.bold,
+                              Row(
+                                children: [
+                                  IconButton(
+                                      onPressed: () {
+                                        Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    ProviderScope(
+                                                        child: HomePageMap())));
+                                      },
+                                      icon: Icon(Icons.dashboard)),
+                                  Icon(Icons.location_on),
+                                  SizedBox(
+                                    width: 300,
+                                    child: Text(
+                                      //{controller.Address}.toString()
+                                      (controller.Address.toString() == '')
+                                          ? 'Set Location'
+                                          : controller.Address.toString(),
+                                      overflow: TextOverflow.ellipsis,
+                                      maxLines: 1,
+                                      softWrap: false,
+                                      style: TextStyle(
+                                        fontSize: 13.0,
+                                        fontFamily: 'Rubik',
+                                        color: new Color(0xFF212121),
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
                                   ),
-                                ),
+                                ],
                               ),
                             ],
                           ),
-                        ],
+                          onPressed: () async {
+                            MyMap m1 = MyMap();
+                            await m1.getLocation();
+                            controller.setLalitudeAndLongitude(m1.lat, m1.long);
+                            Navigator.pushNamed(context, '/mapPage');
+                          },
+                        ),
                       ),
-                      onPressed: () async {
-                        MyMap m1 = MyMap();
-                        await m1.getLocation();
-                        controller.setLalitudeAndLongitude(m1.lat, m1.long);
-                        Navigator.pushNamed(context, '/mapPage');
-                      },
-                    ),
-                  ),
-                  // search box and the favorite button
-                  Padding(
-                    padding: EdgeInsets.only(
-                        left: defaultPadding,
-                        right: defaultPadding,
-                        top: 0,
-                        bottom: 5),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: TextField(
-                            decoration: InputDecoration(
-                              prefixIcon: Icon(
-                                Icons.search,
-                                color: Colors.blue,
+                      // search box and the favorite button
+                      Padding(
+                        padding: EdgeInsets.only(
+                            left: defaultPadding,
+                            right: defaultPadding,
+                            top: 0,
+                            bottom: 5),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: TextField(
+                                decoration: InputDecoration(
+                                  prefixIcon: Icon(
+                                    Icons.search,
+                                    color: Colors.blue,
+                                  ),
+                                  prefixIconColor: Colors.blue,
+                                  border: OutlineInputBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(5.0)),
+                                  ),
+                                  hintText: 'Search Menu of nearby Restaurants',
+                                  alignLabelWithHint: true,
+                                ),
+                                onTap: () =>
+                                    Navigator.pushNamed(context, '/searchPage'),
                               ),
-                              prefixIconColor: Colors.blue,
-                              border: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(5.0)),
+                            ),
+                            SizedBox(
+                              width: sizedBoxWidth,
+                            ),
+                            // favorite button
+                            SizedBox(
+                              height: 60,
+                              child: ElevatedButton(
+                                child: Icon(
+                                  Icons.favorite_border_outlined,
+                                ),
+                                onPressed: () =>
+                                    Navigator.pushNamed(context, '/favorite'),
                               ),
-                              hintText: 'Search Menu of nearby Restaurants',
-                              alignLabelWithHint: true,
+                            )
+                          ],
+                        ),
+                      ),
+                      SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children: [
+                            MaterialButton(
+                              onPressed: () {},
+                              child: Row(
+                                children: [
+                                  Icon(Icons.sort_by_alpha),
+                                  Text('Sort By'),
+                                ],
+                              ),
+                              color: scrollableButtonColor,
                             ),
-                            onTap: () =>
-                                Navigator.pushNamed(context, '/searchPage'),
-                          ),
-                        ),
-                        SizedBox(
-                          width: sizedBoxWidth,
-                        ),
-                        // favorite button
-                        SizedBox(
-                          height: 60,
-                          child: ElevatedButton(
-                            child: Icon(
-                              Icons.favorite_border_outlined,
+                            SizedBox(
+                              width: sizedBoxWidth,
                             ),
-                            onPressed: () =>
-                                Navigator.pushNamed(context, '/favorite'),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      children: [
-                        MaterialButton(
-                          onPressed: () {},
-                          child: Row(
-                            children: [
-                              Icon(Icons.sort_by_alpha),
-                              Text('Sort By'),
-                            ],
-                          ),
-                          color: scrollableButtonColor,
-                        ),
-                        SizedBox(
-                          width: sizedBoxWidth,
-                        ),
-                        MaterialButton(
-                          onPressed: () {},
-                          child: Row(
-                            children: [
-                              Icon(Icons.sort),
-                              Text('Filter'),
-                            ],
-                          ),
-                          color: scrollableButtonColor,
-                        ),
-                        SizedBox(
-                          width: sizedBoxWidth,
-                        ),
-                        MaterialButton(
-                          onPressed: () {},
-                          child: Row(
-                            children: [
-                              Icon(Icons.star),
-                              Text('Above 4'),
-                            ],
-                          ),
-                          color: scrollableButtonColor,
-                        ),
-                        SizedBox(
-                          width: sizedBoxWidth,
-                        ),
-                        MaterialButton(
-                          onPressed: () {},
-                          child: Row(
-                            children: [
-                              Icon(Icons.sort),
-                              Text('Menu Only'),
-                            ],
-                          ),
-                          color: scrollableButtonColor,
-                        )
-                      ],
-                    ),
-                  ),
-                  Divider(
-                    thickness: 10,
-                    color: Color.fromARGB(153, 231, 231, 231),
-                  ),
-                  SingleChildScrollView(
-                    child: Column(
-                      children: <Widget>[
-                        Padding(
-                          padding: EdgeInsets.all(defaultPadding),
-                          child: SingleChildScrollView(
-                            scrollDirection: Axis.horizontal,
-                            child: Row(
-                              children: [
-                                Image.network(
-                                  "https://previews.123rf.com/images/winnond/winnond2008/winnond200800004/152889333-find-nearby-restaurants-that-open-for-food-delivery-or-search-location-of-the-restaurant-for-a-meal-.jpg",
-                                  height: 200,
-                                ),
-                                Image.network(
-                                  "https://previews.123rf.com/images/winnond/winnond2008/winnond200800004/152889333-find-nearby-restaurants-that-open-for-food-delivery-or-search-location-of-the-restaurant-for-a-meal-.jpg",
-                                  height: 200,
-                                ),
-                                Image.network(
-                                  "https://previews.123rf.com/images/winnond/winnond2008/winnond200800004/152889333-find-nearby-restaurants-that-open-for-food-delivery-or-search-location-of-the-restaurant-for-a-meal-.jpg",
-                                  height: 200,
-                                ),
-                                Image.network(
-                                  "https://previews.123rf.com/images/winnond/winnond2008/winnond200800004/152889333-find-nearby-restaurants-that-open-for-food-delivery-or-search-location-of-the-restaurant-for-a-meal-.jpg",
-                                  height: 200,
-                                ),
-                              ],
+                            MaterialButton(
+                              onPressed: () {},
+                              child: Row(
+                                children: [
+                                  Icon(Icons.sort),
+                                  Text('Filter'),
+                                ],
+                              ),
+                              color: scrollableButtonColor,
                             ),
-                          ),
+                            SizedBox(
+                              width: sizedBoxWidth,
+                            ),
+                            MaterialButton(
+                              onPressed: () {},
+                              child: Row(
+                                children: [
+                                  Icon(Icons.star),
+                                  Text('Above 4'),
+                                ],
+                              ),
+                              color: scrollableButtonColor,
+                            ),
+                            SizedBox(
+                              width: sizedBoxWidth,
+                            ),
+                            MaterialButton(
+                              onPressed: () {},
+                              child: Row(
+                                children: [
+                                  Icon(Icons.sort),
+                                  Text('Menu Only'),
+                                ],
+                              ),
+                              color: scrollableButtonColor,
+                            )
+                          ],
                         ),
-                        Divider(
-                          thickness: 10,
-                          color: Color.fromARGB(153, 231, 231, 231),
-                        ),
-                      ],
-                    ),
+                      ),
+                      Divider(
+                        thickness: 10,
+                        color: Color.fromARGB(153, 231, 231, 231),
+                      ),
+                      // SingleChildScrollView(
+                      //   scrollDirection: Axis.horizontal,
+                      //   child: Row(
+                      //     children: [
+                      //       Image.network(
+                      //         "https://previews.123rf.com/images/winnond/winnond2008/winnond200800004/152889333-find-nearby-restaurants-that-open-for-food-delivery-or-search-location-of-the-restaurant-for-a-meal-.jpg",
+                      //         height: 200,
+                      //       ),
+                      //       Image.network(
+                      //         "https://previews.123rf.com/images/winnond/winnond2008/winnond200800004/152889333-find-nearby-restaurants-that-open-for-food-delivery-or-search-location-of-the-restaurant-for-a-meal-.jpg",
+                      //         height: 200,
+                      //       ),
+                      //       Image.network(
+                      //         "https://previews.123rf.com/images/winnond/winnond2008/winnond200800004/152889333-find-nearby-restaurants-that-open-for-food-delivery-or-search-location-of-the-restaurant-for-a-meal-.jpg",
+                      //         height: 200,
+                      //       ),
+                      //       Image.network(
+                      //         "https://previews.123rf.com/images/winnond/winnond2008/winnond200800004/152889333-find-nearby-restaurants-that-open-for-food-delivery-or-search-location-of-the-restaurant-for-a-meal-.jpg",
+                      //         height: 200,
+                      //       ),
+                      //     ],
+                      //   ),
+                      // ),
+                      Divider(
+                        thickness: 10,
+                        color: Color.fromARGB(153, 231, 231, 231),
+                      ),
+
+                      // SingleChildScrollView(
+                      //   child: ListView.builder(
+                      //       itemCount: ListOfItems.length,
+                      //       itemBuilder: (context, index) {
+                      //         final item = ListOfItems[index];
+
+                      //         return ListTile(
+                      //           title:
+                      //               SizedBox(height: 4, child: Text('new title')),
+                      //           subtitle: Text('new subtitle'),
+                      //         );
+                      //       }),
+                      // ),
+                    ],
                   ),
-                ],
-              ),
+                ), // above unscrollable stacks item
+              ],
             ),
           ),
         );
       }),
     );
   }
+}
+
+Widget func(BuildContext context, int i) {
+  return Text('new $i');
 }

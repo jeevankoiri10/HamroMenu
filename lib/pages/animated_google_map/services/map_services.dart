@@ -1,5 +1,6 @@
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:hamro_menu_getx/secret/secret_key.dart';
 import '../models/auto_complete_result.dart';
 
 import 'package:http/http.dart' as http;
@@ -7,7 +8,7 @@ import 'dart:convert' as convert;
 
 class MapServices {
   // updated the key here at the map_services.dart file
-  final String key = 'AIzaSyAfixTbiUl5P2-Rhb2NXGQPL6I1sky1KL4';
+  final String key = API_KEY;
   final String types = 'geocode';
 
   Future<List<AutoCompleteResult>> searchPlaces(String searchInput) async {
