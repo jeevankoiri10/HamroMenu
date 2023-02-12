@@ -118,6 +118,7 @@ class _HomePageState extends State<HomePage> {
                             top: 0,
                             bottom: 5),
                         child: Row(
+                          // implementation of input field and favourite button
                           children: [
                             Expanded(
                               child: TextField(
@@ -158,6 +159,8 @@ class _HomePageState extends State<HomePage> {
                       SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
                         child: Row(
+                          // Implementation of filters of the list shown below
+
                           children: [
                             MaterialButton(
                               onPressed: () {},
@@ -215,29 +218,32 @@ class _HomePageState extends State<HomePage> {
                         thickness: 10,
                         color: Color.fromARGB(153, 231, 231, 231),
                       ),
-                      // SingleChildScrollView(
-                      //   scrollDirection: Axis.horizontal,
-                      //   child: Row(
-                      //     children: [
-                      //       Image.network(
-                      //         "https://previews.123rf.com/images/winnond/winnond2008/winnond200800004/152889333-find-nearby-restaurants-that-open-for-food-delivery-or-search-location-of-the-restaurant-for-a-meal-.jpg",
-                      //         height: 200,
-                      //       ),
-                      //       Image.network(
-                      //         "https://previews.123rf.com/images/winnond/winnond2008/winnond200800004/152889333-find-nearby-restaurants-that-open-for-food-delivery-or-search-location-of-the-restaurant-for-a-meal-.jpg",
-                      //         height: 200,
-                      //       ),
-                      //       Image.network(
-                      //         "https://previews.123rf.com/images/winnond/winnond2008/winnond200800004/152889333-find-nearby-restaurants-that-open-for-food-delivery-or-search-location-of-the-restaurant-for-a-meal-.jpg",
-                      //         height: 200,
-                      //       ),
-                      //       Image.network(
-                      //         "https://previews.123rf.com/images/winnond/winnond2008/winnond200800004/152889333-find-nearby-restaurants-that-open-for-food-delivery-or-search-location-of-the-restaurant-for-a-meal-.jpg",
-                      //         height: 200,
-                      //       ),
-                      //     ],
-                      //   ),
-                      // ),
+                      Container(
+                        height: 70 / 100 * MediaQuery.of(context).size.height,
+                        child: SingleChildScrollView(
+                          // scrollDirection: Axis.vertical,
+                          child: Column(
+                            children: [
+                              Image.network(
+                                "https://previews.123rf.com/images/winnond/winnond2008/winnond200800004/152889333-find-nearby-restaurants-that-open-for-food-delivery-or-search-location-of-the-restaurant-for-a-meal-.jpg",
+                                height: 200,
+                              ),
+                              Image.network(
+                                "https://previews.123rf.com/images/winnond/winnond2008/winnond200800004/152889333-find-nearby-restaurants-that-open-for-food-delivery-or-search-location-of-the-restaurant-for-a-meal-.jpg",
+                                height: 200,
+                              ),
+                              Image.network(
+                                "https://img.freepik.com/free-vector/modern-restaurant-menu-fast-food_52683-48982.jpg",
+                                height: 200,
+                              ),
+                              Image.network(
+                                "https://previews.123rf.com/images/winnond/winnond2008/winnond200800004/152889333-find-nearby-restaurants-that-open-for-food-delivery-or-search-location-of-the-restaurant-for-a-meal-.jpg",
+                                height: 200,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
                       Divider(
                         thickness: 10,
                         color: Color.fromARGB(153, 231, 231, 231),

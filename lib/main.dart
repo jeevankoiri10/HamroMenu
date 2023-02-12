@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       color: Colors.blue,
       debugShowCheckedModeBanner: false,
-      initialRoute: '/splash',
+      initialRoute: '/',
       routes: {
         '/splash': (context) => SplashScreen(),
         '/': (context) => const HomePage(),
