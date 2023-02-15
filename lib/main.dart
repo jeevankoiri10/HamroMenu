@@ -7,6 +7,8 @@ import 'package:hamro_menu_getx/pages/login_pages/login_page.dart';
 import 'package:hamro_menu_getx/pages/map_page_view.dart';
 import 'package:hamro_menu_getx/pages/search_page_view.dart';
 import './pages/animated_google_map/animated_google_map.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,14 +22,14 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       color: Colors.blue,
       debugShowCheckedModeBanner: false,
-      initialRoute: '/',
+      initialRoute: '/login',
       routes: {
         '/splash': (context) => SplashScreen(),
+        '/login': (context) => LogInPage(),
         '/': (context) => const HomePage(),
         '/mapPage': (context) => MapPage(),
         '/searchPage': (context) => SearchPage(),
         '/favorite': (context) => FavoritePage(),
-        '/login': (context) => LogInPage(),
         '/gmap': (context) => GoogleMapFlutterPage(),
         '/animatedMap': (context) => AnimatedGoogleMap(),
       },
