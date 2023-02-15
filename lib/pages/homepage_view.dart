@@ -43,6 +43,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
+
     setState(() {});
     List<int> ListOfItems = [1, 2];
 
@@ -52,6 +54,7 @@ class _HomePageState extends State<HomePage> {
       onWillPop: _onWillPop,
       child: Obx(() {
         return new Scaffold(
+          drawer: new Drawer(),
           body: SafeArea(
             child: Stack(
               children: [
@@ -81,7 +84,8 @@ class _HomePageState extends State<HomePage> {
                                       icon: Icon(Icons.dashboard)),
                                   Icon(Icons.location_on),
                                   SizedBox(
-                                    width: 300,
+                                    width: MediaQuery.of(context).size.width /
+                                        1.75,
                                     child: Text(
                                       //{controller.Address}.toString()
                                       (controller.Address.toString() == '')
@@ -98,6 +102,10 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                     ),
                                   ),
+                                  // the profile button at the right of the location
+                                  IconButton(
+                                      onPressed: () => {},
+                                      icon: Icon(Icons.person)),
                                 ],
                               ),
                             ],
@@ -110,6 +118,7 @@ class _HomePageState extends State<HomePage> {
                           },
                         ),
                       ),
+
                       // search box and the favorite button
                       Padding(
                         padding: EdgeInsets.only(
