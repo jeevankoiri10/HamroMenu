@@ -6,6 +6,7 @@ import '../models/auto_complete_result.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
 
+// Used for the floating button search functionality
 class MapServices {
   // updated the key here at the map_services.dart file
   final String key = API_KEY;
@@ -20,7 +21,7 @@ class MapServices {
     var json = convert.jsonDecode(response.body);
 
     var results = json['predictions'] as List;
-
+    // this will returns the list of result with the key value 'predictions' fetched from the
     return results.map((e) => AutoCompleteResult.fromJson(e)).toList();
   }
 

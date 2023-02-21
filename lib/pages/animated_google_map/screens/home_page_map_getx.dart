@@ -11,17 +11,20 @@ import 'package:hamro_menu_getx/secret/secret_key.dart';
 import '../models/auto_complete_result.dart';
 import '../providers/search_places.dart';
 import '../services/map_services.dart';
+import '../providers/search_controller_get.dart';
+import 'package:get/get.dart';
 
 import 'dart:ui' as ui;
 
 // ConsumerStatefulWidget is the part of riverpod(state management package)
-class HomePageMap extends ConsumerStatefulWidget {
+class HomePageMap extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
 }
 
 // this is the second class of the stateful widget.
-class _HomePageState extends ConsumerState<HomePageMap> {
+class _HomePageState extends State<HomePageMap> {
+  final AnimatedGmapController ctrl = Get.find();
   Completer<GoogleMapController> _controller = Completer();
 
 // by introducing the provider but not added the pub.dev provider.
@@ -212,10 +215,6 @@ class _HomePageState extends ConsumerState<HomePageMap> {
     final screenHeight = MediaQuery.of(context).size.height;
     final screenWidth = MediaQuery.of(context).size.width;
 
-    //Providers
-    final allSearchResults = ref.watch(placeResultsProvider);
-    final searchFlag = ref.watch(searchToggleProvider);
-
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -268,8 +267,8 @@ class _HomePageState extends ConsumerState<HomePageMap> {
                                           _markers = {};
 
                                           // in this file created the variable searchFlag
-                                          if (searchFlag.searchToggle)
-                                            searchFlag.toggleSearch();
+                                          if (ctrl.searchToggle)
+                                            ctrl.toggleSearch();
                                         });
                                       },
                                       icon: Icon(Icons.close))),
@@ -282,8 +281,8 @@ class _HomePageState extends ConsumerState<HomePageMap> {
                                     // making folder provider and add search_places.dart
                                     // making folder model auto_complete_result.dart
 
-                                    if (!searchFlag.searchToggle) {
-                                      searchFlag.toggleSearch();
+                                    if (!ctrl.searchToggle) {
+                                      ctrl.toggleSearch();
                                       _markers = {};
                                     }
 
@@ -291,10 +290,11 @@ class _HomePageState extends ConsumerState<HomePageMap> {
                                         // create the folder called services>
                                         await MapServices().searchPlaces(value);
 
-                                    allSearchResults.setResults(searchResults);
+                                    ctrl.allReturnedResults
+                                        .setResults(searchResults);
                                   } else {
                                     List<AutoCompleteResult> emptyList = [];
-                                    allSearchResults.setResults(emptyList);
+                                    ctrl.setResults(emptyList);
                                   }
                                 });
                               },
@@ -303,8 +303,8 @@ class _HomePageState extends ConsumerState<HomePageMap> {
                         ]),
                       )
                     : Container(),
-                searchFlag.searchToggle
-                    ? allSearchResults.allReturnedResults.length != 0
+                ctrl.searchToggle
+                    ? ctrl.allReturnedResults.length != 0
                         ? Positioned(
                             top: 100.0,
                             left: 15.0,
@@ -317,8 +317,8 @@ class _HomePageState extends ConsumerState<HomePageMap> {
                               ),
                               child: ListView(
                                 children: [
-                                  ...allSearchResults.allReturnedResults
-                                      .map((e) => buildListItem(e, searchFlag))
+                                  ...ctrl.allReturnedResults.map(
+                                      (e) => buildListItem(e, ctrl.searchFlag))
                                 ],
                               ),
                             ))
