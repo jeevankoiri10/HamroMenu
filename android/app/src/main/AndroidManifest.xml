@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.hamro_menu_getx">
    <application
-        android:label="hamro_menu_getx"
+        android:label="HamroMenu"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <!-- TODO: Add your Google Maps API key here -->

@@ -6,6 +6,7 @@ import 'package:hamro_menu_getx/pages/homepage_view.dart';
 import 'package:hamro_menu_getx/pages/login_pages/login_page.dart';
 import 'package:hamro_menu_getx/pages/map_page_view.dart';
 import 'package:hamro_menu_getx/pages/search_page_view.dart';
+import 'package:hamro_menu_getx/splash_screen.dart';
 import './pages/animated_google_map/animated_google_map.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
