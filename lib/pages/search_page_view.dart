@@ -1,16 +1,11 @@
-import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:hamro_menu_getx/controller/map_controller.dart';
-
-import '../controller/search_controller.dart';
+import 'package:get/get.dart';
 
 class SearchPage extends StatelessWidget {
   const SearchPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(SearchController());
-
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(15.0),
@@ -26,34 +21,31 @@ class SearchPage extends StatelessWidget {
                           Navigator.of(context).popAndPushNamed('/')),
                   Expanded(
                     child: TextField(
-                      decoration: InputDecoration(
-                        prefixIcon: Icon(
-                          Icons.search,
-                          color: Colors.blue,
+                        decoration: InputDecoration(
+                          prefixIcon: Icon(
+                            Icons.search,
+                            color: Colors.blue,
+                          ),
+                          prefixIconColor: Colors.blue,
+                          border: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(2.0)),
+                          ),
+                          hintText: 'Search Menu of nearby Restaurants',
                         ),
-                        prefixIconColor: Colors.blue,
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(2.0)),
-                        ),
-                        hintText: 'Search Menu of nearby Restaurants',
-                      ),
-                      onChanged: (value) =>
-                          controller.changeInput(RxString(value), context),
-                    ),
+                        onChanged: (value) => print(0)),
                   ),
                 ],
               ),
               AnimatedToggle(
                 values: ['Restaurants', 'Menu'],
-                onToggleCallback: (value) {
-                  controller.isMenu = RxInt(value);
-                },
+                onToggleCallback: (value) {},
                 buttonColor: Colors.blue, //const Color(0xFF0A3157),
                 backgroundColor: const Color(0xFFB5C1CC),
                 textColor: const Color(0xFFFFFFFF),
               ),
               Obx(() {
-                return Text('Toggle Value : ${controller.isMenu}');
+                return Text('Toggle Value : ');
               }),
             ],
           ),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:hamro_menu_getx/controller/riverpod_provider.dart';
+import 'package:hamro_menu_getx/pages/animated_google_map/providers/search_places_provider.dart';
 // use this to remove your error
 //import 'package:latlong2/latlong.dart' as latlong;
 // nepal 28.3949° N, 84.1240° E
@@ -22,6 +22,7 @@ class _MapPageState extends ConsumerState<MapPage> {
 
   @override
   Widget build(BuildContext context) {
+    final myLocation = ref.watch(setCurrentLocationProvider);
     return Scaffold(
       body: SafeArea(
         child: Stack(
@@ -100,6 +101,10 @@ class _MapPageState extends ConsumerState<MapPage> {
                             position:
                                 LatLng(position.latitude, position.longitude)));
                       });
+                      ref
+                          .read(setCurrentLocationProvider.notifier)
+                          .setMyCurrentLocation(
+                              position.latitude, position.longitude);
                       Navigator.of(context).pop();
                     },
                     child: Text('Set Location',
