@@ -11,14 +11,14 @@ Color scrollableButtonColor =
 double? sizedBoxWidth = 15.0;
 double? sizedBoxHeight = 0.0;
 
-class HomePage extends StatefulWidget {
+class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  ConsumerState<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends ConsumerState<HomePage> {
   //
   Future<bool> _onWillPop() async {
     return (await showDialog(
@@ -87,7 +87,6 @@ class _HomePageState extends State<HomePage> {
                                     width: MediaQuery.of(context).size.width /
                                         1.75,
                                     child: Text(
-                                      //{controller.Address}.toString()
                                       (controller.Address.toString() == '')
                                           ? 'Set Location'
                                           : controller.Address.toString(),

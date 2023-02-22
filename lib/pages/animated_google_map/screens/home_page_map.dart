@@ -76,7 +76,7 @@ class _HomePageState extends ConsumerState<HomePageMap> {
   TextEditingController _destinationController = TextEditingController();
 
 //Initial map position on load
-  static final CameraPosition _kGooglePlex = CameraPosition(
+  static final CameraPosition _K_IOE = CameraPosition(
     target: LatLng(27.682259515941116, 85.31859149792422),
     zoom: 14.4746,
   );
@@ -114,7 +114,7 @@ class _HomePageState extends ConsumerState<HomePageMap> {
         CameraPosition(target: point, zoom: 12)));
     setState(() {
       _circles.add(Circle(
-          circleId: CircleId('raj'),
+          circleId: CircleId('jk'),
           center: point,
           fillColor: Colors.blue.withOpacity(0.1),
           radius: radiusValue,
@@ -230,7 +230,7 @@ class _HomePageState extends ConsumerState<HomePageMap> {
                     markers: _markers,
                     polylines: _polylines,
                     circles: _circles,
-                    initialCameraPosition: _kGooglePlex,
+                    initialCameraPosition: _K_IOE,
                     onMapCreated: (GoogleMapController controller) {
                       _controller.complete(controller);
                     },

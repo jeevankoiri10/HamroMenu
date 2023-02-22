@@ -1,87 +1,137 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import '../controller/map_controller.dart';
-import 'package:open_street_map_search_and_pick/open_street_map_search_and_pick.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:hamro_menu_getx/controller/riverpod_provider.dart';
+// use this to remove your error
+//import 'package:latlong2/latlong.dart' as latlong;
+// nepal 28.3949° N, 84.1240° E
+//27.6588° N, 85.3247° E lalitpur
 
-class MapPage extends StatefulWidget {
-  const MapPage({super.key});
+LatLng currentLocation = LatLng(27.65, 85.72);
 
+class MapPage extends ConsumerStatefulWidget {
   @override
-  State<MapPage> createState() => _MapPageState();
+  ConsumerState<MapPage> createState() => _MapPageState();
 }
 
-class _MapPageState extends State<MapPage> {
+class _MapPageState extends ConsumerState<MapPage> {
+  late GoogleMapController gmapController;
+
+  Set<Marker> mymarkersSet = {};
+
   @override
   Widget build(BuildContext context) {
-    // You can ask Get to find a Controller that is being used by another page and redirect you to it.
-    final MapController controller = Get.find();
-    Map<MarkerId, Marker> markers = <MarkerId, Marker>{};
-    LatLng _center =
-        LatLng(controller.latitude.toDouble(), controller.longitude.toDouble());
-
-    void _onMapCreated(GoogleMapController controller) {
-      final marker = Marker(
-        markerId: MarkerId('place_name'),
-        position: LatLng(9.669111, 80.014007),
-        // icon: BitmapDescriptor.,
-        infoWindow: InfoWindow(
-          title: 'title',
-          snippet: 'address',
-        ),
-      );
-
-      setState(() {
-        markers[MarkerId('place_name')] = marker;
-      });
-    }
-
     return Scaffold(
-      body: Stack(
-        children: [
-          //     SafeArea(
-          //       child: Align(
-          //         alignment: Alignment.centerLeft,
-          //         child: Text('Safe Area'),
-          //       ),
-          //     ),
-          //     Stack(
-          //       children: [
-          //         GoogleMap(
-          //           onMapCreated: _onMapCreated,
-          //           initialCameraPosition:
-          //               CameraPosition(target: _center, zoom: 14.14),
-          //           compassEnabled: true,
-          //           myLocationButtonEnabled: true,
-          //           markers: markers.values.toSet(),
-          //         ),
-          //         Positioned(
-          //           left: MediaQuery.of(context).size.width / 4,
-          //           right: MediaQuery.of(context).size.width / 4,
-          //           bottom: 1,
-          //           child: Padding(
-          //             padding: const EdgeInsets.all(8.0),
-          //             child: ElevatedButton(
-          //                 onPressed: () {}, child: Text('Set Current Location')),
-          //           ),
-          //         ),
-          //       ],
-          //     ),
-
-          OpenStreetMapSearchAndPick(
-            center: LatLong(controller.latitude.toDouble(),
-                controller.longitude.toDouble()),
-            buttonText: 'Set Current Location',
-            onPicked: (pickedData) {
-              // print(pickedData.latLong.latitude);
-              // print(pickedData.latLong.longitude);
-              // print(pickedData.address);
-              controller.changeAddress(
-                  RxString(pickedData.address.toString()), context);
-            },
-          ),
-        ],
+      body: SafeArea(
+        child: Stack(
+          alignment: AlignmentDirectional.bottomStart,
+          children: [
+            GoogleMap(
+              initialCameraPosition: CameraPosition(
+                target: currentLocation,
+                zoom: 14,
+              ),
+              onMapCreated: (controller) {
+                gmapController = controller;
+              },
+              onTap: (argument) {
+                setState(() {
+                  print(argument);
+                  mymarkersSet.clear();
+                  mymarkersSet.add(Marker(
+                      markerId: MarkerId('id1'),
+                      position: LatLng(argument.latitude, argument.longitude)));
+                });
+              },
+              markers: mymarkersSet,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: SizedBox(
+                height: 40,
+                child: ElevatedButton(
+                  onPressed: () async {
+                    // determine the current location using geolocator api.
+                    Position position = await determinePosition();
+                    // update the camera position
+                    gmapController.animateCamera(CameraUpdate.newCameraPosition(
+                        CameraPosition(
+                            target:
+                                LatLng(position.latitude, position.longitude),
+                            zoom: 14)));
+                    setState(() {
+                      print(position);
+                      mymarkersSet.clear();
+                      mymarkersSet.add(Marker(
+                          markerId: MarkerId('id1'),
+                          position:
+                              LatLng(position.latitude, position.longitude)));
+                    });
+                  },
+                  child: Text('My Location',
+                      style: TextStyle(color: Colors.black)),
+                  style:
+                      ElevatedButton.styleFrom(backgroundColor: Colors.white),
+                ),
+              ),
+            ),
+            Positioned(
+              right: MediaQuery.of(context).size.width * 0.3,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: SizedBox(
+                  height: 40,
+                  child: ElevatedButton(
+                    onPressed: () async {
+                      // determine the current location using geolocator api.
+                      Position position = await determinePosition();
+                      // update the camera position
+                      gmapController.animateCamera(
+                          CameraUpdate.newCameraPosition(CameraPosition(
+                              target:
+                                  LatLng(position.latitude, position.longitude),
+                              zoom: 14)));
+                      setState(() {
+                        print(position);
+                        mymarkersSet.clear();
+                        mymarkersSet.add(Marker(
+                            markerId: MarkerId('id1'),
+                            position:
+                                LatLng(position.latitude, position.longitude)));
+                      });
+                      Navigator.of(context).pop();
+                    },
+                    child: Text('Set Location',
+                        style: TextStyle(color: Colors.black)),
+                    style:
+                        ElevatedButton.styleFrom(backgroundColor: Colors.white),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
+  }
+
+  Future<Position> determinePosition() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      return Future.error('Location services are disabled.');
+    }
+    permission = await Geolocator.checkPermission();
+
+    if (permission == LocationPermission.denied) {
+      return Future.error('Location permission denied.');
+    }
+    if (permission == LocationPermission.deniedForever) {
+      return Future.error('Location permission are permanently denied');
+    }
+    Position position = await Geolocator.getCurrentPosition();
+    return position;
   }
 }
