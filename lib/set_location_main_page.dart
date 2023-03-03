@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 
-import '../controller/map_controller.dart';
+import 'controller/set_location_controller.dart';
 // use this to remove your error
 //import 'package:latlong2/latlong.dart' as latlong;
 // nepal 28.3949° N, 84.1240° E
 //27.6588° N, 85.3247° E lalitpur
 
-class MapPage extends ConsumerStatefulWidget {
+class MapPage extends StatefulWidget {
   @override
-  ConsumerState<MapPage> createState() => _MapPageState();
+  State<MapPage> createState() => _MapPageState();
 }
 
-class _MapPageState extends ConsumerState<MapPage> {
+class _MapPageState extends State<MapPage> {
   late GoogleMapController gmapController;
 
   Set<Marker> mymarkersSet = {};

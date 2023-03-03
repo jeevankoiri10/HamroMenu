@@ -8,9 +8,9 @@ import 'package:flutter_rating_stars/flutter_rating_stars.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:hamro_menu_getx/secret/secret_key.dart';
-import 'models/auto_complete_result.dart';
-import 'providers/search_places.dart';
-import 'services/map_services.dart';
+import 'pages/animated_google_map_page/models/auto_complete_result.dart';
+import 'pages/animated_google_map_page/providers/search_places.dart';
+import 'pages/animated_google_map_page/services/map_services.dart';
 
 import 'dart:ui' as ui;
 

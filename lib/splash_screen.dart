@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hamro_menu_getx/pages/homepage_view.dart';
+import 'package:hamro_menu_getx/homepage_view.dart';
 import 'package:lottie/lottie.dart';
 
 class SplashScreen extends StatefulWidget {

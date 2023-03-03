@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:hamro_menu_getx/pages/animated_google_map/animated_google_map_page.dart';
-import '../controller/map_controller.dart';
-import 'map_page_view.dart';
+import 'package:hamro_menu_getx/animated_google_map_page.dart';
+import 'controller/set_location_controller.dart';
+import 'set_location_main_page.dart';
 
 double defaultPadding = 15.0;
 Color scrollableButtonColor =

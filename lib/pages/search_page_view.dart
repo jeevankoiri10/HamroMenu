@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:hamro_menu_getx/controller/map_controller.dart';
+import 'package:hamro_menu_getx/controller/set_location_controller.dart';
 
 import '../controller/search_controller.dart';
 
