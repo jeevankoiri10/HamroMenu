@@ -1,0 +1,98 @@
+{
+  "project_info": {
+    "project_number": "299525860236",
+    "project_id": "hamromenu",
+    "storage_bucket": "hamromenu.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:299525860236:android:21b2cceb32d5b1332f84a9",
+        "android_client_info": {
+          "package_name": "com.example.firebase_auth2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "299525860236-njvsl8t69c0isdvv0rbu11m6pbvs1n54.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.firebase_auth2",
+            "certificate_hash": "d2f3198c9c2ea82b1da7efedb3ef5eed31eb5416"
+          }
+        },
+        {
+          "client_id": "299525860236-m6alngpocfpnl2g66i1u7771mtp8pdl4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDybRgs-aVMvGiX_bYNgMxk9t4j0NPhP6c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "299525860236-m6alngpocfpnl2g66i1u7771mtp8pdl4.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "299525860236-drmh8tofafddha4rfcngoo7uj937vv9h.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.hamroMenuGetx"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:299525860236:android:dd73215bd46fdc6a2f84a9",
+        "android_client_info": {
+          "package_name": "com.example.hamro_menu_getx"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "299525860236-5tmkq3o0ae18ice1ec3b6t7bc9tcob58.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.hamro_menu_getx",
+            "certificate_hash": "d2f3198c9c2ea82b1da7efedb3ef5eed31eb5416"
+          }
+        },
+        {
+          "client_id": "299525860236-m6alngpocfpnl2g66i1u7771mtp8pdl4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDybRgs-aVMvGiX_bYNgMxk9t4j0NPhP6c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "299525860236-m6alngpocfpnl2g66i1u7771mtp8pdl4.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "299525860236-drmh8tofafddha4rfcngoo7uj937vv9h.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.hamroMenuGetx"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

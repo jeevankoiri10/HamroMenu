@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:hamro_menu_getx/homepage_view.dart';
 
-var latitude = 35.0; //27.6588;
-var longitude = 37.0; //85.3247;
+// LatLng(27.682259515941116, 85.31859149792422), to show himalayan hotel at first
+var latitude = 27.682259515941116;
+var longitude = 85.31859149792422;
 bool isAddressAssigned = false;
 
 void setLalitudeAndLongitude(double latitude1, double longitude1) {

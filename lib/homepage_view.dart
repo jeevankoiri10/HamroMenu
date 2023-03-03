@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hamro_menu_getx/animated_google_map_page.dart';
+import 'package:hamro_menu_getx/pages/login_pages/login_page.dart';
+import 'package:hamro_menu_getx/pages/places_list_page.dart';
 import 'controller/set_location_controller.dart';
 import 'set_location_main_page.dart';
 
@@ -18,6 +20,7 @@ class HomePage extends ConsumerStatefulWidget {
 }
 
 class _HomePageState extends ConsumerState<HomePage> {
+  bool isLoggedIn = false;
   //
   Future<bool> _onWillPop() async {
     return (await showDialog(
@@ -99,7 +102,12 @@ class _HomePageState extends ConsumerState<HomePage> {
                                 ),
                                 // the profile button at the right of the location
                                 IconButton(
-                                    onPressed: () => {},
+                                    onPressed: () {
+                                      Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  LogInPage()));
+                                    },
                                     icon: Icon(Icons.person)),
                               ],
                             ),
@@ -228,6 +236,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                         // scrollDirection: Axis.vertical,
                         child: Column(
                           children: [
+                            // PlacesListGoogleMap(),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Image.network(

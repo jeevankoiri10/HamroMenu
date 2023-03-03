@@ -7,11 +7,12 @@ import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:flutter_rating_stars/flutter_rating_stars.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:hamro_menu_getx/controller/set_location_controller.dart';
 import 'package:hamro_menu_getx/secret/secret_key.dart';
 import 'pages/animated_google_map_page/models/auto_complete_result.dart';
 import 'pages/animated_google_map_page/providers/search_places.dart';
 import 'pages/animated_google_map_page/services/map_services.dart';
-
+import 'controller/set_location_controller.dart';
 import 'dart:ui' as ui;
 
 // ConsumerStatefulWidget is the part of riverpod(state management package)
@@ -77,7 +78,8 @@ class _HomePageState extends ConsumerState<AnimatedGoogleMap> {
 
 //Initial map position on load
   static final CameraPosition _K_IOE = CameraPosition(
-    target: LatLng(27.682259515941116, 85.31859149792422),
+    target: LatLng(latitude,
+        longitude), // LatLng(27.682259515941116, 85.31859149792422), to show himalayan hotel at first
     zoom: 14.4746,
   );
 
@@ -136,18 +138,18 @@ class _HomePageState extends ConsumerState<AnimatedGoogleMap> {
           await getBytesFromAsset('assets/mapicons/restaurants.png', 75);
     else if (types.contains('food'))
       markerIcon = await getBytesFromAsset('assets/mapicons/food.png', 75);
-    else if (types.contains('school'))
-      markerIcon = await getBytesFromAsset('assets/mapicons/schools.png', 75);
+    // else if (types.contains('school'))
+    //   markerIcon = await getBytesFromAsset('assets/mapicons/schools.png', 75);
     else if (types.contains('bar'))
       markerIcon = await getBytesFromAsset('assets/mapicons/bars.png', 75);
     else if (types.contains('lodging'))
       markerIcon = await getBytesFromAsset('assets/mapicons/hotels.png', 75);
-    else if (types.contains('store'))
-      markerIcon =
-          await getBytesFromAsset('assets/mapicons/retail-stores.png', 75);
-    else if (types.contains('locality'))
-      markerIcon =
-          await getBytesFromAsset('assets/mapicons/local-services.png', 75);
+    // else if (types.contains('store'))
+    //   markerIcon =
+    //       await getBytesFromAsset('assets/mapicons/retail-stores.png', 75);
+    // else if (types.contains('locality'))
+    //   markerIcon =
+    //       await getBytesFromAsset('assets/mapicons/local-services.png', 75);
     else
       markerIcon = await getBytesFromAsset('assets/mapicons/places.png', 75);
 
@@ -473,9 +475,11 @@ class _HomePageState extends ConsumerState<AnimatedGoogleMap> {
                                           _debounce?.cancel();
                                         _debounce = Timer(Duration(seconds: 2),
                                             () async {
+                                          // the placesResult will store all the values
                                           var placesResult = await MapServices()
                                               .getPlaceDetails(tappedPoint,
                                                   radiusValue.toInt());
+                                          print('placesResult $placesResult');
 
                                           List<dynamic> placesWithin =
                                               placesResult['results'] as List;
@@ -517,6 +521,7 @@ class _HomePageState extends ConsumerState<AnimatedGoogleMap> {
                                                 await MapServices()
                                                     .getMorePlaceDetails(
                                                         tokenKey);
+                                            // done
 
                                             List<dynamic> placesWithin =
                                                 placesResult['results'] as List;
@@ -594,9 +599,12 @@ class _HomePageState extends ConsumerState<AnimatedGoogleMap> {
                                     BorderRadius.all(Radius.circular(8.0))),
                             child: SingleChildScrollView(
                               child: Column(children: [
+                                //consisting of the image only
                                 Container(
-                                  height: 150.0,
-                                  width: 175.0,
+                                  height: MediaQuery.of(context).size.height *
+                                      0.13, //150.0,
+                                  width: MediaQuery.of(context).size.width *
+                                      0.5, //175.0,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.only(
                                         topLeft: Radius.circular(8.0),
@@ -610,7 +618,8 @@ class _HomePageState extends ConsumerState<AnimatedGoogleMap> {
                                 ),
                                 Container(
                                   padding: EdgeInsets.all(7.0),
-                                  width: 175.0,
+                                  width: MediaQuery.of(context).size.width *
+                                      0.45, //175.0,
                                   child: Row(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
@@ -1209,16 +1218,22 @@ class _HomePageState extends ConsumerState<AnimatedGoogleMap> {
           }
           moveCameraSlightly();
         },
+        // Actual implementation of UI of the Horizontal scrollable screen is here
+        //main UI of horizontal scrollable screen
+        //this is the component present in the horizontal scrollable restaurants items in the map
         child: Stack(
           children: [
+            // center and container is all over the screen
             Center(
               child: Container(
                 margin: EdgeInsets.symmetric(
+                  //padding
                   horizontal: 10.0,
                   vertical: 20.0,
                 ),
-                height: 125.0,
-                width: 275.0,
+                // height and width of that box
+                height: MediaQuery.of(context).size.height * 0.5, // 125.0,
+                width: MediaQuery.of(context).size.width * 0.916, //275.0,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10.0),
                     boxShadow: [
@@ -1246,7 +1261,7 @@ class _HomePageState extends ConsumerState<AnimatedGoogleMap> {
                                       image: DecorationImage(
                                           image: NetworkImage(placeImg != ''
                                               ? 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=$placeImg&key=$key'
-                                              : 'https://pic.onlinewebfonts.com/svg/img_546302.png'),
+                                              : 'https://pic.onlinewebfonts.com/svg/img_546302.png'), // image of black camera crossed
                                           fit: BoxFit.cover)),
                                 )
                               : Container(
@@ -1261,6 +1276,7 @@ class _HomePageState extends ConsumerState<AnimatedGoogleMap> {
                                 )
                           : Container(),
                       SizedBox(width: 5.0),
+                      // this is the component present in the horizontal scrollable restaurants items in the map
                       Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         crossAxisAlignment: CrossAxisAlignment.start,
