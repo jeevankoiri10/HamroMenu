@@ -15,6 +15,14 @@
       "oauth_client": [
         {
           "client_id": "299525860236-uvcgb55rmqcshl8qh3ga0p3mmrtue0m1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.hamro_menu_getx",
+            "certificate_hash": "d2f3198c9c2ea82b1da7efedb3ef5eed31eb5416"
+          }
+        }, 
+        {
+          "client_id": "299525860236-m6alngpocfpnl2g66i1u7771mtp8pdl4.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -29,6 +37,13 @@
             {
               "client_id": "299525860236-uvcgb55rmqcshl8qh3ga0p3mmrtue0m1.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "299525860236-drmh8tofafddha4rfcngoo7uj937vv9h.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.hamroMenuGetx"
+              }
             }
           ]
         }

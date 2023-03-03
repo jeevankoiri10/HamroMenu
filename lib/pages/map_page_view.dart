@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:hamro_menu_getx/controller/riverpod_provider.dart';
+
+import '../controller/map_controller.dart';
 // use this to remove your error
 //import 'package:latlong2/latlong.dart' as latlong;
 // nepal 28.3949° N, 84.1240° E
 //27.6588° N, 85.3247° E lalitpur
-
-LatLng currentLocation = LatLng(27.65, 85.72);
 
 class MapPage extends ConsumerStatefulWidget {
   @override
@@ -19,7 +18,7 @@ class _MapPageState extends ConsumerState<MapPage> {
   late GoogleMapController gmapController;
 
   Set<Marker> mymarkersSet = {};
-
+  // final controller1 = Get.put(MapController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,23 +28,31 @@ class _MapPageState extends ConsumerState<MapPage> {
           children: [
             GoogleMap(
               initialCameraPosition: CameraPosition(
-                target: currentLocation,
+                target: LatLng(latitude, longitude), //LatLng(27.65, 85.72);
                 zoom: 14,
               ),
               onMapCreated: (controller) {
                 gmapController = controller;
+                isAddressAssigned = false;
               },
+              // on tap to make marker on the mapPage
               onTap: (argument) {
                 setState(() {
-                  print(argument);
                   mymarkersSet.clear();
                   mymarkersSet.add(Marker(
                       markerId: MarkerId('id1'),
                       position: LatLng(argument.latitude, argument.longitude)));
+
+                  print('argument: $argument');
+                  setLalitudeAndLongitude(
+                      argument.latitude, argument.longitude);
                 });
+
+                // setState(() {});
               },
               markers: mymarkersSet,
             ),
+            // finding my location and setting it
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: SizedBox(
@@ -67,6 +74,9 @@ class _MapPageState extends ConsumerState<MapPage> {
                           markerId: MarkerId('id1'),
                           position:
                               LatLng(position.latitude, position.longitude)));
+                      setLalitudeAndLongitude(
+                          position.latitude, position.longitude);
+                      isAddressAssigned = true;
                     });
                   },
                   child: Text('My Location',
@@ -83,24 +93,27 @@ class _MapPageState extends ConsumerState<MapPage> {
                 child: SizedBox(
                   height: 40,
                   child: ElevatedButton(
-                    onPressed: () async {
-                      // determine the current location using geolocator api.
-                      Position position = await determinePosition();
-                      // update the camera position
-                      gmapController.animateCamera(
-                          CameraUpdate.newCameraPosition(CameraPosition(
-                              target:
-                                  LatLng(position.latitude, position.longitude),
-                              zoom: 14)));
-                      setState(() {
-                        print(position);
-                        mymarkersSet.clear();
-                        mymarkersSet.add(Marker(
-                            markerId: MarkerId('id1'),
-                            position:
-                                LatLng(position.latitude, position.longitude)));
-                      });
-                      Navigator.of(context).pop();
+                    onPressed: () {
+                      print('$latitude L + $longitude longi');
+                      // // determine th
+                      //e current location using geolocator api.
+                      // Position position = await determinePosition();
+                      // // update the camera position
+                      // gmapController.animateCamera(
+                      //     CameraUpdate.newCameraPosition(CameraPosition(
+                      //         target:
+                      //             LatLng(position.latitude, position.longitude),
+                      //         zoom: 14)));
+                      // setState(() {
+                      //   print(position);
+                      //   mymarkersSet.clear();
+                      //   mymarkersSet.add(Marker(
+                      //       markerId: MarkerId('id1'),
+                      //       position:
+                      //           LatLng(position.latitude, position.longitude)));
+                      // });
+
+                      goToHomePage(context);
                     },
                     child: Text('Set Location',
                         style: TextStyle(color: Colors.black)),
