@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:hamro_menu_getx/pages/homepage_view.dart';
 
 class LogInPage extends StatelessWidget {
   bool isLoggedin = true;

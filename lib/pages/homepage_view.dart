@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-// import 'package:get/get.dart';
-import 'package:hamro_menu_getx/models/open_location.dart';
-import 'package:hamro_menu_getx/pages/animated_google_map/screens/home_page_map.dart';
+import 'package:hamro_menu_getx/pages/animated_google_map/animated_google_map_page.dart';
 import '../controller/map_controller.dart';
 import 'map_page_view.dart';
 
@@ -76,7 +74,8 @@ class _HomePageState extends ConsumerState<HomePage> {
                                           MaterialPageRoute(
                                               builder: (context) =>
                                                   ProviderScope(
-                                                      child: HomePageMap())));
+                                                      child:
+                                                          AnimatedGoogleMap())));
                                     },
                                     icon: Icon(Icons.dashboard)),
                                 Icon(Icons.location_on),
@@ -109,9 +108,6 @@ class _HomePageState extends ConsumerState<HomePage> {
                         // Place to show the text for the map on the homepage
                         onPressed: () async {
                           await getLocation();
-                          // isAddressAssigned = false; // show the set location
-                          // setLalitudeAndLongitude(latitude, longitude);
-                          // setState(() {});
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) => MapPage()));
                         },
@@ -333,8 +329,4 @@ class _HomePageState extends ConsumerState<HomePage> {
       ),
     );
   }
-}
-
-Widget func(BuildContext context, int i) {
-  return Text('new $i');
 }

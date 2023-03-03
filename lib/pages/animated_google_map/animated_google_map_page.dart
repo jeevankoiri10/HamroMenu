@@ -8,20 +8,20 @@ import 'package:flutter_rating_stars/flutter_rating_stars.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:hamro_menu_getx/secret/secret_key.dart';
-import '../models/auto_complete_result.dart';
-import '../providers/search_places.dart';
-import '../services/map_services.dart';
+import 'models/auto_complete_result.dart';
+import 'providers/search_places.dart';
+import 'services/map_services.dart';
 
 import 'dart:ui' as ui;
 
 // ConsumerStatefulWidget is the part of riverpod(state management package)
-class HomePageMap extends ConsumerStatefulWidget {
+class AnimatedGoogleMap extends ConsumerStatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
 }
 
 // this is the second class of the stateful widget.
-class _HomePageState extends ConsumerState<HomePageMap> {
+class _HomePageState extends ConsumerState<AnimatedGoogleMap> {
   Completer<GoogleMapController> _controller = Completer();
 
 // by introducing the provider but not added the pub.dev provider.
