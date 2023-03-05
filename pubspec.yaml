@@ -59,9 +59,12 @@ dependencies:
   flip_card: ^0.6.0
   flutter_rating_stars: ^1.0.3+4
   google_sign_in: ^6.0.2
+  flutter_launcher_icons: ^0.12.0
   
 
 dev_dependencies:
+  flutter_launcher_icons: "^0.12.0"
+
   flutter_test:
     sdk: flutter
 
@@ -72,6 +75,25 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
   build_runner: ^2.3.3
+  #icons 
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icon/icon.png"
+  min_sdk_android: 21 # android min sdk min:16, default 21
+  web:
+    generate: true
+    image_path: "assets/icon/icon.png"
+    background_color: "#hexcode"
+    theme_color: "#hexcode"
+  windows:
+    generate: true
+    image_path: "assets/icon/icon.png"
+    icon_size: 48 # min:48, max:256, default: 48
+  macos:
+    generate: true
+    image_path: "assets/icon/icon.png"
+  
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -90,6 +112,7 @@ flutter:
     - assets/animassets/
     - assets/fonts/
     - assets/mapicons/
+    - assets/icon/icon.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -117,3 +140,4 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+  
