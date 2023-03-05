@@ -48,7 +48,6 @@ dependencies:
   #firebase 
   firebase_core: ^2.4.1
   firebase_auth: ^4.2.6
-  firebase_ui_auth: ^1.1.15
 
   #new app
   lottie: ^2.2.0
