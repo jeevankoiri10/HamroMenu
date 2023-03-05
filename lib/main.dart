@@ -22,14 +22,14 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       color: Colors.blue,
       debugShowCheckedModeBanner: false,
-      initialRoute: '/login',
+      initialRoute: '/favorite',
       routes: {
         '/splash': (context) => SplashScreen(),
         '/login': (context) => LogInPage(), //SignInDemo(), //
         '/': (context) => HomePage(),
         '/mapPage': (context) => MapPage(),
         '/searchPage': (context) => SearchPage(),
-        '/favorite': (context) => FavoritePage(),
+        '/favorite': (context) => FavouritePage(),
         '/gmap': (context) => GoogleMapFlutterPage(),
         '/animatedMap': (context) => AnimatedGoogleMap(),
       },
