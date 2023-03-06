@@ -18,6 +18,7 @@ class _UserAccountUIState extends State<UserAccountUI> {
     return Scaffold(
       appBar: AppBar(
         title: Text('User Account Page'),
+        // automaticallyImplyLeading: false,
       ),
       body: Center(
         child: SingleChildScrollView(

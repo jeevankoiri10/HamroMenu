@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hamro_menu_getx/homepage_view.dart';
+import 'package:hamro_menu_getx/pages/login_pages/login_page.dart';
 import 'package:lottie/lottie.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -15,7 +16,7 @@ class _SplashScreenState extends State<SplashScreen> {
     // TODO: implement initState
     super.initState();
     Future.delayed(Duration(seconds: 5)).then((value) => Navigator.of(context)
-        .pushReplacement(MaterialPageRoute(builder: (context) => HomePage())));
+        .pushReplacement(MaterialPageRoute(builder: (context) => LogInPage())));
   }
 
   @override
