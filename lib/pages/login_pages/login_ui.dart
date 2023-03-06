@@ -4,6 +4,9 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:hamro_menu_getx/homepage_view.dart';
 import 'package:hamro_menu_getx/pages/login_pages/login_page.dart';
+import 'package:hamro_menu_getx/pages/restaurant_owner_page/restaurant_owner_list.dart';
+
+import '../restaurant_owner_page/restaurant_owner_homepage.dart';
 
 GoogleSignInAccount? loggedInUserDetails;
 GoogleSignIn _googleSignIn = GoogleSignIn();
@@ -34,11 +37,37 @@ class _LoginUIState extends State<LoginUI> {
                     _googleSignIn.signIn().then((value) {
                       loggedInUserDetails = value;
 
-                      Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(builder: (context) => HomePage()));
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => ((isLoggedin == true) &&
+                                ( // loggedInUserDetails!.email.toLowerCase() ==
+                                    RestaurantOwnersList.contains(
+                                        loggedInUserDetails!.email
+                                            .toLowerCase())))
+                            ? RestaurantOwnerPage()
+                            : HomePage(),
+                      ));
                     });
                   },
-                  child: Text('Log In with Google')),
+                  child: Text('Log In as Customer')),
+              ElevatedButton(
+                  onPressed: () {
+                    _googleSignIn.signOut();
+                    isLoggedin = true;
+                    _googleSignIn.signIn().then((value) {
+                      loggedInUserDetails = value;
+                      RestaurantOwnersList.add(loggedInUserDetails!.email);
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => ((isLoggedin == true) &&
+                                ( // loggedInUserDetails!.email.toLowerCase() ==
+                                    RestaurantOwnersList.contains(
+                                        loggedInUserDetails!.email
+                                            .toLowerCase())))
+                            ? RestaurantOwnerPage()
+                            : HomePage(),
+                      ));
+                    });
+                  },
+                  child: Text('Log in as restaurant owner')),
             ],
           ),
         ),
