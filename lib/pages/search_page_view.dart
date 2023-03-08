@@ -1,163 +1,168 @@
-import 'package:get/get.dart';
-import 'package:flutter/material.dart';
-import 'package:hamro_menu_getx/controller/set_location_controller.dart';
+import 'dart:io';
 
-import '../controller/search_controller.dart';
+import 'package:flutter/material.dart';
+import 'package:hamro_menu_getx/pages/details_favourite_page.dart';
 
 class SearchPage extends StatelessWidget {
-  const SearchPage({super.key});
-
+  SearchPage({super.key});
+  List Items = [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+  ];
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(SearchController());
-
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(15.0),
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              SafeArea(child: SizedBox()),
-              Row(
-                children: [
-                  BackButton(
-                      onPressed: () =>
-                          Navigator.of(context).popAndPushNamed('/')),
-                  Expanded(
-                    child: TextField(
-                      decoration: InputDecoration(
-                        prefixIcon: Icon(
-                          Icons.search,
-                          color: Colors.blue,
-                        ),
-                        prefixIconColor: Colors.blue,
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(2.0)),
-                        ),
-                        hintText: 'Search Menu of nearby Restaurants',
-                      ),
-                      onChanged: (value) =>
-                          controller.changeInput(RxString(value), context),
+      appBar: AppBar(
+        title: const Text('Search Restaurant'),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextField(
+                  decoration: InputDecoration(
+                    prefixIcon: Icon(
+                      Icons.search,
+                      color: Colors.blue,
                     ),
+                    prefixIconColor: Colors.blue,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(2.0)),
+                    ),
+                    hintText: 'Search Menu of nearby Restaurants',
                   ),
-                ],
-              ),
-              AnimatedToggle(
-                values: ['Restaurants', 'Menu'],
-                onToggleCallback: (value) {
-                  controller.isMenu = RxInt(value);
-                },
-                buttonColor: Colors.blue, //const Color(0xFF0A3157),
-                backgroundColor: const Color(0xFFB5C1CC),
-                textColor: const Color(0xFFFFFFFF),
-              ),
-              Obx(() {
-                return Text('Toggle Value : ${controller.isMenu}');
-              }),
-            ],
-          ),
+                  onChanged: (value) {}),
+            ),
+            SingleChildScrollView(
+              child: ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: Items.length,
+                  itemBuilder: (context, index) {
+                    return Card(
+                        child: ListTile(
+                      title: Text('Restaurant ${Items[index]}'),
+                      // iconColor: Colors.blue,
+                      leading: const Icon(Icons.favorite),
+                      minLeadingWidth: 5,
+                      trailing: const Icon(Icons.arrow_forward_ios),
+                      horizontalTitleGap: 10,
+                      onTap: () {
+                        print('Item ${Items[index]}');
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) =>
+                              DetailsFavourite(indexSent: index),
+                        ));
+                      },
+                      subtitle: Text('Subtitile: ${Items[index]}'),
+                    ));
+                  }),
+            ),
+          ],
         ),
       ),
     );
   }
 }
 
-class AnimatedToggle extends StatefulWidget {
-  final List<String> values;
-  final ValueChanged onToggleCallback;
-  final Color backgroundColor;
-  final Color buttonColor;
-  final Color textColor;
+class MyPhotoes extends StatelessWidget {
+  const MyPhotoes({super.key});
 
-  AnimatedToggle({
-    required this.values,
-    required this.onToggleCallback,
-    this.backgroundColor = const Color(0xFFe7e7e8),
-    this.buttonColor = const Color(0xFFFFFFFF),
-    this.textColor = const Color(0xFF000000),
-  });
-  @override
-  _AnimatedToggleState createState() => _AnimatedToggleState();
-}
-
-class _AnimatedToggleState extends State<AnimatedToggle> {
-  bool initialPosition = true;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: Get.width * 0.6,
-      height: Get.width * 0.10,
-      margin: EdgeInsets.all(20),
-      child: Stack(
-        children: <Widget>[
-          GestureDetector(
-            onTap: () {
-              initialPosition = !initialPosition;
-              var index = 0;
-              if (!initialPosition) {
-                index = 1;
-              }
-              widget.onToggleCallback(index);
-              setState(() {});
-            },
-            child: Container(
-              width: Get.width * 0.6,
-              height: Get.width * 0.13,
-              decoration: ShapeDecoration(
-                color: widget.backgroundColor,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(Get.width * 0.1),
-                ),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: List.generate(
-                  widget.values.length,
-                  (index) => Padding(
-                    padding: EdgeInsets.symmetric(horizontal: Get.width * 0.05),
-                    child: Text(
-                      widget.values[index],
-                      style: TextStyle(
-                        fontFamily: 'Rubik',
-                        fontSize: Get.width * 0.045,
-                        fontWeight: FontWeight.bold,
-                        color: const Color(0xAA000000),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
+    return Column(
+      children: [
+        // PlacesListGoogleMap(),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Image.network(
+            'https://d27k8xmh3cuzik.cloudfront.net/wp-content/uploads/2018/09/CoverKathmanduRestoepb0310.jpg',
+            height: 200,
           ),
-          AnimatedAlign(
-            duration: const Duration(milliseconds: 250),
-            curve: Curves.decelerate,
-            alignment:
-                initialPosition ? Alignment.centerLeft : Alignment.centerRight,
-            child: Container(
-              width: Get.width * 0.33,
-              height: Get.width * 0.13,
-              decoration: ShapeDecoration(
-                color: widget.buttonColor,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(Get.width * 0.1),
-                ),
-              ),
-              child: Text(
-                initialPosition ? widget.values[0] : widget.values[1],
-                style: TextStyle(
-                  fontFamily: 'Rubik',
-                  fontSize: Get.width * 0.045,
-                  color: widget.textColor,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              alignment: Alignment.center,
-            ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Image.network(
+            "https://www.emilyluxton.co.uk/wp-content/uploads/2017/06/abhishek-sanwa-limbu-782224-unsplash-800x534.jpg",
+            height: 200,
           ),
-        ],
-      ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Image.network(
+            "https://holidaynepaltreks.com/wp-content/uploads/2018/12/bhojan-griha.jpg",
+            height: 200,
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Image.network(
+            "https://b.zmtcdn.com/data/pictures/3/18426303/9a859a16bb7e2259988c65fcee21babe.jpg",
+            height: 250,
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Image.network(
+            "https://img.freepik.com/free-vector/modern-restaurant-menu-fast-food_52683-48982.jpg",
+            height: 180,
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Image.network(
+            "https://c8.alamy.com/comp/2EENMYP/fast-food-menu-template-for-fastfood-restaurant-or-cafe-vector-sketch-price-list-for-hot-dog-and-fries-combo-pizza-or-cheeseburger-and-hamburger-san-2EENMYP.jpg",
+            height: 200,
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Image.network(
+            "https://media-cdn.tripadvisor.com/media/photo-p/0e/42/c8/37/the-menu.jpg",
+            height: 300,
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Image.network(
+            "https://images.pexels.com/photos/1633578/pexels-photo-1633578.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+            height: 300,
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Image.network(
+            "https://images.pexels.com/photos/541216/pexels-photo-541216.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+            height: 300,
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Image.network(
+            "https://img.freepik.com/free-vector/burgers-restaurant-menu-template_23-2149005028.jpg?w=2000",
+            height: 250,
+          ),
+        ),
+      ],
     );
   }
 }

@@ -1,3 +1,3 @@
 List<String> RestaurantOwnersList = [
-  'jeevankoirima@gmail.com',
+  'bikashkoiri@gmail.com',
 ];

@@ -52,12 +52,11 @@ class _HomePageState extends ConsumerState<HomePage> {
     return WillPopScope(
       onWillPop: _onWillPop,
       child: Scaffold(
-        drawer: new Drawer(),
         body: SafeArea(
-          child: Stack(
-            children: [
-              Container(
-                child: Column(
+          child: SingleChildScrollView(
+            child: Stack(
+              children: [
+                Column(
                   //mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
                     // New Google map Testing place
@@ -330,9 +329,9 @@ class _HomePageState extends ConsumerState<HomePage> {
                     //       }),
                     // ),
                   ],
-                ),
-              ), // above unscrollable stacks item
-            ],
+                ), // above unscrollable stacks item
+              ],
+            ),
           ),
         ),
       ),

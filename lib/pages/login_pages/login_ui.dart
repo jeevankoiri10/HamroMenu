@@ -22,52 +22,65 @@ class _LoginUIState extends State<LoginUI> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Log In Page'),
-        automaticallyImplyLeading: false,
-      ),
+      // appBar: AppBar(
+      //   title: Text('Log In Page'),
+      //   automaticallyImplyLeading: false,
+      // ),
       body: SafeArea(
         child: Center(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              ElevatedButton(
-                  onPressed: () {
-                    _googleSignIn.signOut();
-                    isLoggedin = true;
-                    _googleSignIn.signIn().then((value) {
-                      loggedInUserDetails = value;
+              Padding(
+                padding: const EdgeInsets.fromLTRB(50.0, 5, 50.0, 5),
+                child: MaterialButton(
+                    minWidth: double.maxFinite - 10,
+                    color: Colors.blue,
+                    elevation: 10,
+                    onPressed: () {
+                      _googleSignIn.signOut();
+                      isLoggedin = true;
+                      _googleSignIn.signIn().then((value) {
+                        loggedInUserDetails = value;
 
-                      Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => ((isLoggedin == true) &&
-                                ( // loggedInUserDetails!.email.toLowerCase() ==
-                                    RestaurantOwnersList.contains(
-                                        loggedInUserDetails!.email
-                                            .toLowerCase())))
-                            ? RestaurantOwnerPage()
-                            : HomePage(),
-                      ));
-                    });
-                  },
-                  child: Text('Log In as Customer')),
-              ElevatedButton(
-                  onPressed: () {
-                    _googleSignIn.signOut();
-                    isLoggedin = true;
-                    _googleSignIn.signIn().then((value) {
-                      loggedInUserDetails = value;
-                      RestaurantOwnersList.add(loggedInUserDetails!.email);
-                      Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => ((isLoggedin == true) &&
-                                ( // loggedInUserDetails!.email.toLowerCase() ==
-                                    RestaurantOwnersList.contains(
-                                        loggedInUserDetails!.email
-                                            .toLowerCase())))
-                            ? RestaurantOwnerPage()
-                            : HomePage(),
-                      ));
-                    });
-                  },
-                  child: Text('Log in as restaurant owner')),
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => ((isLoggedin == true) &&
+                                  ( // loggedInUserDetails!.email.toLowerCase() ==
+                                      RestaurantOwnersList.contains(
+                                          loggedInUserDetails!.email
+                                              .toLowerCase())))
+                              ? RestaurantOwnerPage()
+                              : HomePage(),
+                        ));
+                      });
+                    },
+                    child: Text('Log In as Customer')),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(50.0, 5, 50.0, 5),
+                child: MaterialButton(
+                    minWidth: double.maxFinite - 10,
+                    color: Colors.blue,
+                    elevation: 10,
+                    onPressed: () {
+                      _googleSignIn.signOut();
+                      isLoggedin = true;
+                      _googleSignIn.signIn().then((value) {
+                        loggedInUserDetails = value;
+                        RestaurantOwnersList.add(loggedInUserDetails!.email);
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => ((isLoggedin == true) &&
+                                  ( // loggedInUserDetails!.email.toLowerCase() ==
+                                      RestaurantOwnersList.contains(
+                                          loggedInUserDetails!.email
+                                              .toLowerCase())))
+                              ? RestaurantOwnerPage()
+                              : HomePage(),
+                        ));
+                      });
+                    },
+                    child: Text('Log in as restaurant owner')),
+              ),
             ],
           ),
         ),
