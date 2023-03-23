@@ -39,12 +39,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       color: Colors.blue,
       debugShowCheckedModeBanner: false,
-      initialRoute: '/',
+      initialRoute: '/splash',
       theme: FlexThemeData.light(scheme: FlexScheme.blue),
       routes: {
         '/splash': (context) => SplashScreen(),
         '/login': (context) => LogInPage(),
-        '/': (context) => HomePage(),
+        '/': (context) => CustomerHomePage(), //HomePage(),
         '/mapPage': (context) => MapPage(),
         '/searchPage': (context) => SearchPage(),
         '/favorite': (context) => FavouritePage(),

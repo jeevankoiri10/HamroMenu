@@ -18,7 +18,7 @@ void setLalitudeAndLongitude(double latitude1, double longitude1) {
 void goToHomePage(BuildContext context) {
   isAddressAssigned = true;
   Navigator.of(context)
-      .push(MaterialPageRoute(builder: (context) => HomePage()));
+      .push(MaterialPageRoute(builder: (context) => CustomerHomePage()));
 }
 
 Future<void> getLocation() async {

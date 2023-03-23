@@ -16,10 +16,10 @@ class _UserAccountUIState extends State<UserAccountUI> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('User Account Page'),
-        // automaticallyImplyLeading: false,
-      ),
+      // appBar: AppBar(
+      //   title: Text('User Account Page'),
+      //   // automaticallyImplyLeading: false,
+      // ),
       body: Center(
         child: SingleChildScrollView(
           child: Column(

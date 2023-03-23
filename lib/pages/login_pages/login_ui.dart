@@ -31,6 +31,10 @@ class _LoginUIState extends State<LoginUI> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Image.asset('assets/icon/icon.png'),
+              SizedBox(
+                height: 20,
+              ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(50.0, 5, 50.0, 5),
                 child: MaterialButton(
@@ -50,7 +54,7 @@ class _LoginUIState extends State<LoginUI> {
                                           loggedInUserDetails!.email
                                               .toLowerCase())))
                               ? RestaurantOwnerPage()
-                              : HomePage(),
+                              : CustomerHomePage(),
                         ));
                       });
                     },
@@ -75,7 +79,7 @@ class _LoginUIState extends State<LoginUI> {
                                           loggedInUserDetails!.email
                                               .toLowerCase())))
                               ? RestaurantOwnerPage()
-                              : HomePage(),
+                              : CustomerHomePage(),
                         ));
                       });
                     },
