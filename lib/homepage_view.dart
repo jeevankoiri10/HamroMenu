@@ -548,11 +548,11 @@ class _HomeState extends State<CustomerHomePage> {
       case 0:
         return HomePageElements();
       case 1:
-        return MapPageHome();
+        return //MapPageHome();
 
-      //SizedBox(
-      //  height: MediaQuery.of(context).size.height - 50,
-      // child: AnimatedGoogleMap());
+            SizedBox(
+                height: MediaQuery.of(context).size.height - 50,
+                child: AnimatedGoogleMap());
       case 2:
         return MenuPageHome();
       case 3:

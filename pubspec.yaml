@@ -47,8 +47,8 @@ dependencies:
   google_maps_webservice: ^0.0.20-nullsafety.5
   #firebase 
   firebase_core: ^2.4.1
-  firebase_auth: ^4.2.6
-  firebase_storage: ^11.0.14
+  # firebase_auth: ^4.2.6
+  # firebase_storage: ^11.0.14
   cloud_firestore: ^4.4.3
 
   #new app
