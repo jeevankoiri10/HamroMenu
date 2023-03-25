@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:hamro_menu_getx/src/locations.dart';
+import 'package:hamro_menu_getx/pages/customer_page/src/locations.dart';
 
 final myLocationProvider = ChangeNotifierProvider<MyLocation>((ref) {
   return MyLocation();

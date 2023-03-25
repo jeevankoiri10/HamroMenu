@@ -418,9 +418,11 @@ import 'package:flutter/material.dart';
 import 'package:hamro_menu_getx/animated_google_map_page.dart';
 import 'package:hamro_menu_getx/map_page_home.dart';
 import 'package:hamro_menu_getx/menu_page_home.dart';
+import 'package:hamro_menu_getx/pages/customer_page/upload_details_customer.dart';
 import 'package:hamro_menu_getx/pages/favourite_page.dart';
-import 'package:hamro_menu_getx/pages/home_page_elements_recommendation/screens/home.dart';
+import 'package:hamro_menu_getx/pages/customer_page/home_page_elements_recommendation/screens/home.dart';
 import 'package:hamro_menu_getx/pages/login_pages/user_account_ui.dart';
+import 'package:hamro_menu_getx/pages/restaurant_owner_page/menu/upload/upload_details.dart';
 import 'package:hamro_menu_getx/set_location_main_page.dart';
 // import '../customer_home_product_page.dart';
 // import 'home_page_new/about/about.dart';
@@ -554,7 +556,7 @@ class _HomeState extends State<CustomerHomePage> {
                 height: MediaQuery.of(context).size.height - 50,
                 child: AnimatedGoogleMap());
       case 2:
-        return MenuPageHome();
+        return UploadMenuDetailsCustomer();
       case 3:
         return UserAccountUI();
     }

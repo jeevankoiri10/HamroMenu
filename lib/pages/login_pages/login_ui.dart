@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:hamro_menu_getx/homepage_view.dart';
+import 'package:hamro_menu_getx/pages/customer_page/customer_homepage_view.dart';
 import 'package:hamro_menu_getx/pages/login_pages/login_page.dart';
 import 'package:hamro_menu_getx/pages/restaurant_owner_page/restaurant_owner_list.dart';
 
-import '../restaurant_owner_page/restaurant_owner_homepage.dart';
+import '../restaurant_owner_page/home_main_restaurant_owner.dart';
+import '../restaurant_owner_page/menu/upload_menu_restaurant.dart';
 
 GoogleSignInAccount? loggedInUserDetails;
 GoogleSignIn _googleSignIn = GoogleSignIn();
@@ -53,7 +54,7 @@ class _LoginUIState extends State<LoginUI> {
                                       RestaurantOwnersList.contains(
                                           loggedInUserDetails!.email
                                               .toLowerCase())))
-                              ? RestaurantOwnerPage()
+                              ? RestaurantOwnerHomePage()
                               : CustomerHomePage(),
                         ));
                       });
@@ -78,7 +79,7 @@ class _LoginUIState extends State<LoginUI> {
                                       RestaurantOwnersList.contains(
                                           loggedInUserDetails!.email
                                               .toLowerCase())))
-                              ? RestaurantOwnerPage()
+                              ? RestaurantOwnerHomePage()
                               : CustomerHomePage(),
                         ));
                       });

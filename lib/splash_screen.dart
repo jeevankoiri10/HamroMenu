@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hamro_menu_getx/homepage_view.dart';
+import 'package:hamro_menu_getx/pages/customer_page/customer_homepage_view.dart';
 import 'package:hamro_menu_getx/pages/login_pages/login_page.dart';
 import 'package:lottie/lottie.dart';
 

@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:hamro_menu_getx/homepage_view.dart';
+import 'package:hamro_menu_getx/pages/customer_page/customer_homepage_view.dart';
 
 // LatLng(27.682259515941116, 85.31859149792422), to show himalayan hotel at first
 var latitude = 27.682259515941116;

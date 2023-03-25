@@ -1,6 +1,6 @@
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:hamro_menu_getx/secret/secret_key.dart';
+import 'package:hamro_menu_getx/pages/customer_page/secret/secret_key.dart';
 import '../models/auto_complete_result.dart';
 
 import 'package:http/http.dart' as http;
