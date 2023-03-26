@@ -14,7 +14,7 @@ List categories = [
     "img": "assets/photo/food2.jpeg"
   },
   {
-    "name": "Nigerian",
+    "name": "French",
     "color1": Color.fromARGB(100, 0, 0, 0),
     "color2": Color.fromARGB(100, 0, 0, 0),
     "img": "assets/photo/food3.jpeg"

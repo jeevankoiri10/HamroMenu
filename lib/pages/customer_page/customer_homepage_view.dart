@@ -418,6 +418,7 @@ import 'package:flutter/material.dart';
 import 'package:hamro_menu_getx/animated_google_map_page.dart';
 import 'package:hamro_menu_getx/map_page_home.dart';
 import 'package:hamro_menu_getx/menu_page_home.dart';
+import 'package:hamro_menu_getx/pages/customer_page/restaurants_around_me.dart';
 import 'package:hamro_menu_getx/pages/customer_page/upload_details_customer.dart';
 import 'package:hamro_menu_getx/pages/favourite_page.dart';
 import 'package:hamro_menu_getx/pages/customer_page/home_page_elements_recommendation/screens/home.dart';
@@ -556,7 +557,7 @@ class _HomeState extends State<CustomerHomePage> {
                 height: MediaQuery.of(context).size.height - 50,
                 child: AnimatedGoogleMap());
       case 2:
-        return UploadMenuDetailsCustomer();
+        return RestaurantsAroundMe(); //UploadMenuDetailsCustomer();
       case 3:
         return UserAccountUI();
     }

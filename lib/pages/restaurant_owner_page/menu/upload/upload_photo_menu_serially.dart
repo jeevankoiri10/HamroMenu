@@ -32,7 +32,7 @@ class _FirestoreWidgetMenuUploadState extends State<FirestoreWidgetMenuUpload> {
       child: Column(
         children: [
           Text(
-            'Thakali Hotels',
+            'Chiya Adda',
             textScaleFactor: 1.3,
           ),
           Text('Baneshwor, Kathmandu'),

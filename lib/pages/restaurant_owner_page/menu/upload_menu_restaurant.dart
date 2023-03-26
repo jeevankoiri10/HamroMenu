@@ -262,7 +262,7 @@ class _RestaurantUploadPageState extends State<RestaurantUploadPage> {
     final json = {
       'id': docUser.id,
       'email': loggedInUserDetails!.email,
-      'name': 'Thakali Restaurant',
+      'name': 'Chiya Adda',
       'address': 'Baneshwor, kathmandu',
       'link': url.toString(),
     };

@@ -67,6 +67,8 @@ dependencies:
   flex_color_scheme: ^6.1.2
   # for beautiful icon 
   font_awesome_flutter: ^10.4.0
+  #to save the data in json in file permanently
+  flutter_secure_storage: ^8.0.0
   
 
 dev_dependencies:

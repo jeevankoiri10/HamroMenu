@@ -23,7 +23,7 @@ class _UploadMenuDetailsCustomerState extends State<UploadMenuDetailsCustomer> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(title: Text('Details')),
+      appBar: AppBar(title: Text('Details')),
       body: SingleChildScrollView(
         child: Column(
           children: [

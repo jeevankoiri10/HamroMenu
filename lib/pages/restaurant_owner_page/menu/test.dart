@@ -273,7 +273,7 @@ class _TextListFirestoreWidgetState extends State<TextListFirestoreWidget> {
     final json = {
       'id': docUser.id,
       'email': loggedInUserDetails!.email,
-      'name': 'Thakali Restaurant',
+      'name': 'Chiya Adda',
       'address': 'Baneshwor, kathmandu',
       'link': url.toString(),
     };

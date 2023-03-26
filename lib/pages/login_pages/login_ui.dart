@@ -3,8 +3,9 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:hamro_menu_getx/pages/customer_page/customer_homepage_view.dart';
+import 'package:hamro_menu_getx/pages/login_pages/login_Restaurant_name_fillup.dart';
 import 'package:hamro_menu_getx/pages/login_pages/login_page.dart';
-import 'package:hamro_menu_getx/pages/restaurant_owner_page/restaurant_owner_list.dart';
+import 'package:hamro_menu_getx/pages/login_pages/restaurant_owner_list.dart';
 
 import '../restaurant_owner_page/home_main_restaurant_owner.dart';
 import '../restaurant_owner_page/menu/upload_menu_restaurant.dart';
@@ -72,16 +73,23 @@ class _LoginUIState extends State<LoginUI> {
                       isLoggedin = true;
                       _googleSignIn.signIn().then((value) {
                         loggedInUserDetails = value;
-                        RestaurantOwnersList.add(loggedInUserDetails!.email);
-                        Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => ((isLoggedin == true) &&
-                                  ( // loggedInUserDetails!.email.toLowerCase() ==
-                                      RestaurantOwnersList.contains(
-                                          loggedInUserDetails!.email
-                                              .toLowerCase())))
-                              ? RestaurantOwnerHomePage()
-                              : CustomerHomePage(),
-                        ));
+                        // RestaurantOwnersList.add(loggedInUserDetails!.email);
+                        // Navigator.of(context).push(MaterialPageRoute(
+                        //   builder: (context) => ((isLoggedin == true) &&
+                        //           ( // loggedInUserDetails!.email.toLowerCase() ==
+                        //               RestaurantOwnersList.contains(
+                        //                   loggedInUserDetails!.email
+                        //                       .toLowerCase())))
+                        //       ? RestaurantOwnerHomePage()
+                        //       : CustomerHomePage(),
+                        // ));
+
+                        // new login
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    RestaurantRegistrationPage()));
                       });
                     },
                     child: Text('Log in as restaurant owner')),

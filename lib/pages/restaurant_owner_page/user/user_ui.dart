@@ -43,7 +43,7 @@ class _RestaurantItemUploadPageState extends State<RestaurantItemUploadPage> {
         child: Column(
           children: [
             Text(
-              'Thakali Hotels',
+              'Chiya Adda',
               textScaleFactor: 1.3,
             ),
             Text('Baneshwor, Kathmandu'),
@@ -83,7 +83,7 @@ class _RestaurantItemUploadPageState extends State<RestaurantItemUploadPage> {
                 child: Text('Upload')),
             Text('Items Enlisted are: '),
             SizedBox(
-              height: 500,
+              height: 450,
               child: StreamBuilder<List<Items>>(
                 stream: readItems(),
                 builder: (context, snapshot) {

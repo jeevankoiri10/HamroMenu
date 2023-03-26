@@ -56,7 +56,6 @@ import '../login_pages/user_account_ui.dart';
 import 'CRUD/restaurant_customer.dart';
 import 'menu/product_page.dart';
 import 'menu/uploaded_restaurant_owner_page.dart';
-import 'photoMenu/new1.dart';
 
 class RestaurantOwnerHomePage extends StatefulWidget {
   const RestaurantOwnerHomePage({super.key});
